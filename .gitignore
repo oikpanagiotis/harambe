@@ -1,0 +1,44 @@
+# Godot-specific files
+.import/
+.export/
+.export_presets.cfg
+
+# Imported assets cache
+*.import
+
+# Mono / C# specific
+.mono/
+data_*/
+mono_crash.*
+
+# OS-specific files
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# IDEs / Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Backup / Temp files
+*.tmp
+*.bak
+*.old
+*.orig
+
+# Build outputs (if exporting to folders)
+build/
+bin/
+dist/
+export/

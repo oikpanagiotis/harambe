@@ -1,0 +1,6 @@
+res://game.tscn
+res://panos/panos_world.tscn
+res://vasilis/vasilis_world.tscn
+res://draft/vasilis/vasilis_world.tscn
+res://scripts/autoload/game_events.gd
+res://game.gd
