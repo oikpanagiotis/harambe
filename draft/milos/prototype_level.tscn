@@ -8,7 +8,7 @@
 [node name="LevelLayout" parent="." instance=ExtResource("1_ho1uv")]
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("1_wbvkr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.34256, 1.95995)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.611625, 1.95995)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.437084, 0.899421, 0, -0.899421, 0.437084, -3.55445, 13.2671, 0)

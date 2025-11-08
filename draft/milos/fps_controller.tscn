@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dwn4yi6l43rcc"]
+[gd_scene load_steps=4 format=3 uid="uid://dwn4yi6l43rcc"]
 
 [sub_resource type="GDScript" id="GDScript_h1svc"]
 script/source = "extends CharacterBody3D
@@ -6,9 +6,8 @@ script/source = "extends CharacterBody3D
 @onready var camera := $Head/Camera3D
 @onready var head := $Head
 @onready var shape := $CollisionShape3D/MeshInstance3D
-@onready var left_collider := $Body/LeftCollider
-@onready var right_collider := $Body/RightCollider
-
+@onready var right_collider := $Head/RightRaycast
+@onready var left_collider := $Head/LeftRaycast
 
 @export var WALK_SPEED = 4.0
 @export var RUN_SPEED = 8.0
@@ -43,11 +42,8 @@ func _unhandled_input(event) -> void:
 
 func _physics_process(delta: float) -> void:
 	var input_dir := Input.get_vector(\"move_left\", \"move_right\", \"move_forward\", \"move_backward\")
-	var direction = (head.transform.basis * transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized() 
+	var direction = (head.transform.basis * transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized() 	
 	
-	
-	
-	print( left_collider.get_overlapping_bodies())
 	if is_falling() and Input.is_action_pressed(\"jump\"):
 		current_mass = MASS * 2 
 		juice_modifier = 10.0
@@ -105,7 +101,7 @@ func add_juice(delta, speed):
 	
 	
 func is_on_wall_on_either_side() -> bool:
-	return false
+	return right_collider.is_colliding() || left_collider.is_colliding()
 func headbob(time_bob):
 	var position = Vector3.ZERO
 	position.y = sin(time_bob * bob_frequency) * bob_amplitude
@@ -117,9 +113,6 @@ func headbob(time_bob):
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_h3g6m"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_j0767"]
-size = Vector3(0.74121094, 1.6318359, 1)
-
 [node name="CharacterBody3D" type="CharacterBody3D"]
 script = SubResource("GDScript_h1svc")
 
@@ -130,21 +123,17 @@ shape = SubResource("CapsuleShape3D_hbvfc")
 layers = 512
 mesh = SubResource("CapsuleMesh_h3g6m")
 
-[node name="LeftCollider" type="Area3D" parent="Body"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/LeftCollider"]
-shape = SubResource("BoxShape3D_j0767")
-
-[node name="RightColider" type="Area3D" parent="Body"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/RightColider"]
-shape = SubResource("BoxShape3D_j0767")
-
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0634993, 0.125172, 0.203677)
 cull_mask = 1048063
+
+[node name="RightRaycast" type="RayCast3D" parent="Head"]
+transform = Transform3D(-4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0, 0, 0, 1, 0, -0.5, 0)
+collision_mask = 7
+
+[node name="LeftRaycast" type="RayCast3D" parent="Head"]
+transform = Transform3D(1.192488e-08, 0.99999994, 0, -0.99999994, 1.192488e-08, 0, 0, 0, 1, 0, -0.5, 0)
+collision_mask = 7
