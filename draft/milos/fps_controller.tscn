@@ -94,18 +94,14 @@ func handle_movement(speed, delta) -> void:
 	var direction = (head.transform.basis * transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized() 	
 	var target_velocity = Vector3.ZERO
 	if direction:
-		if is_on_wall_only():
-			speed = speed / 2
-		else:
-			target_velocity.x = direction.x * speed	
-			target_velocity.z = direction.z * speed
-			
-			
-			velocity.x = lerp(velocity.x,target_velocity.x, acceleration * delta)
-			velocity.z = lerp(velocity.z,target_velocity.z, acceleration * delta)
+		target_velocity.x = direction.x * speed	
+		target_velocity.z = direction.z * speed
+		
+		velocity.x = lerp(velocity.x,target_velocity.x, acceleration * delta)
+		velocity.z = lerp(velocity.z,target_velocity.z, acceleration * delta)
 	else:
-		velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
-		velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
+		velocity.x = lerp(velocity.x, 0.0, delta * 7.0)
+		velocity.z = lerp(velocity.z, 0.0, delta * 7.0)
 		
 func add_juice(delta, speed) -> void:
 	#Bobbing
