@@ -1,3 +1,13 @@
-[gd_scene format=3 uid="uid://c3yr3rvdjuqef"]
+[gd_scene load_steps=2 format=3 uid="uid://c3yr3rvdjuqef"]
+
+[ext_resource type="ArrayMesh" uid="uid://ckcnolhfos7rf" path="res://draft/panos/Untitled.obj" id="1_q2flg"]
 
 [node name="PanosWorld" type="Node3D"]
+
+[node name="Untitled" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5732269, -0.7448432, -0.34149602, -0.29322132, 0.20270091, -0.9343091, 0.76513535, 0.635705, -0.102210194, -0.3866322, -0.38483855, 1.1449373)
+mesh = ExtResource("1_q2flg")
+
+[node name="Untitled2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.67459136, 0.65129375, 0.3474803, 0.6781982, 0.36093035, 0.64013773, 0.2915014, 0.6674918, -0.68518704, 2.5264273, -0.43241197, 1.1221533)
+mesh = ExtResource("1_q2flg")
