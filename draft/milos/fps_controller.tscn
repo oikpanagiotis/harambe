@@ -8,11 +8,17 @@ script/source = "extends CharacterBody3D
 @onready var shape := $CollisionShape3D/MeshInstance3D
 @onready var right_collider := $Head/RightRaycast
 @onready var left_collider := $Head/LeftRaycast
+@onready var face_collider := $Head/UpperFrontRaycast
+@onready var body_collider := $Head/FrontRaycast
+@onready var jump_buffer := $JumpBufferTimer
 
 @export var WALK_SPEED = 4.0
 @export var RUN_SPEED = 8.0
 @export var  MASS = 4.0
 
+@export var acceleration := 12.0
+@export var deceleration := 10.0
+var current_velocity := Vector3.ZERO
 var current_mass = MASS
 const JUMP_VELOCITY = 15.0
 var lock_timer = 0
@@ -31,6 +37,7 @@ const BASE_FOV = 80.0
 const FOV_CHANGE = 2.0
 
 func _ready():
+	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _unhandled_input(event) -> void:
@@ -41,8 +48,6 @@ func _unhandled_input(event) -> void:
 		camera.rotation.x = clamp(camera.rotation.x, TILT_LOWER_LIMIT, TILT_UPPER_LIMIT)
 
 func _physics_process(delta: float) -> void:
-	var input_dir := Input.get_vector(\"move_left\", \"move_right\", \"move_forward\", \"move_backward\")
-	var direction = (head.transform.basis * transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized() 	
 	
 	if is_falling() and Input.is_action_pressed(\"jump\"):
 		current_mass = MASS * 2 
@@ -51,57 +56,79 @@ func _physics_process(delta: float) -> void:
 		current_mass = MASS
 		juice_modifier = 1.0
 	
+
 	if not is_on_floor():
 		if is_on_wall_on_either_side() and is_falling():
 			velocity += get_gravity() * current_mass / 5 * delta
 		else:
 			velocity += get_gravity() * current_mass * delta
-			
+
 	# Handle sprint 
 	if Input.is_action_pressed(\"sprint\"):
 		speed = RUN_SPEED
 	else:
 		speed = WALK_SPEED
-
-	
-	if direction:
-		if is_on_wall_only():
-			speed = speed / 2
-		else:
-			velocity.x = direction.x * speed
-			velocity.z = direction.z * speed
-			
-	else:
-		velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
-		velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
 		
+	handle_movement(speed, delta)
 	# Handle jump.
 	if Input.is_action_just_pressed(\"jump\"):
+		jump_buffer.start()
+	
+	if jump_buffer.time_left > 0:
 		if is_on_floor():
 			velocity.y = JUMP_VELOCITY
-		elif is_on_wall_on_either_side():
-			velocity = get_wall_normal() * 10
-			velocity.y += JUMP_VELOCITY
-	
+		elif jump_buffer.time_left == jump_buffer.wait_time and can_vault_over_wall():
+			velocity.y = JUMP_VELOCITY
+		elif jump_buffer.time_left == jump_buffer.wait_time and is_on_wall_on_either_side():
+			velocity = get_walljump_wall_normal() * 20
+			velocity.y = JUMP_VELOCITY
 	add_juice(delta,speed)
 	move_and_slide()
 	
 func is_falling() -> bool:
 	return velocity.y < 0
-	
-func add_juice(delta, speed):
+
+
+func handle_movement(speed, delta) -> void:
+	var input_dir := Input.get_vector(\"move_left\", \"move_right\", \"move_forward\", \"move_backward\")
+	var direction = (head.transform.basis * transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized() 	
+	var target_velocity = Vector3.ZERO
+	if direction:
+		if is_on_wall_only():
+			speed = speed / 2
+		else:
+			target_velocity.x = direction.x * speed	
+			target_velocity.z = direction.z * speed
+			
+			
+			velocity.x = lerp(velocity.x,target_velocity.x, acceleration * delta)
+			velocity.z = lerp(velocity.z,target_velocity.z, acceleration * delta)
+	else:
+		velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
+		velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
+		
+func add_juice(delta, speed) -> void:
 	#Bobbing
 	time_bob += delta * velocity.length() * float(is_on_floor())
-	#camera.transform.origin = headbob(time_bob)
+	camera.transform.origin = headbob(time_bob)
 	
 	# FOV
 	var velocity_clamped = clamp(velocity.length(), 0.5, speed * 2)
 	var target_fov = BASE_FOV + FOV_CHANGE * velocity_clamped
 	camera.fov = lerp(camera.fov, target_fov, delta * juice_modifier)
-	
-	
+
 func is_on_wall_on_either_side() -> bool:
 	return right_collider.is_colliding() || left_collider.is_colliding()
+
+func can_vault_over_wall() -> bool:
+	return not face_collider.is_colliding() and body_collider.is_colliding()
+
+func get_walljump_wall_normal() -> Vector3:
+	if right_collider.is_colliding():
+		return right_collider.get_collision_normal()
+	else:
+		return left_collider.get_collision_normal()
+
 func headbob(time_bob):
 	var position = Vector3.ZERO
 	position.y = sin(time_bob * bob_frequency) * bob_amplitude
@@ -137,3 +164,15 @@ collision_mask = 7
 [node name="LeftRaycast" type="RayCast3D" parent="Head"]
 transform = Transform3D(1.192488e-08, 0.99999994, 0, -0.99999994, 1.192488e-08, 0, 0, 0, 1, 0, -0.5, 0)
 collision_mask = 7
+
+[node name="UpperFrontRaycast" type="RayCast3D" parent="Head"]
+transform = Transform3D(-5.21253e-16, 1.1924876e-08, -0.9999998, -0.9999999, -4.3711374e-08, 0, -4.3711385e-08, 0.99999964, 1.1924879e-08, 0, 0.2, 0)
+collision_mask = 7
+
+[node name="FrontRaycast" type="RayCast3D" parent="Head"]
+transform = Transform3D(-5.21253e-16, 1.1924876e-08, -0.9999998, -0.9999999, -4.3711374e-08, 0, -4.3711385e-08, 0.99999964, 1.1924879e-08, 0, -0.50146055, 0)
+collision_mask = 7
+
+[node name="JumpBufferTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
