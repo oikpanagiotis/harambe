@@ -1,0 +1,43 @@
+[gd_scene load_steps=9 format=3 uid="uid://dsio7vkwmuegn"]
+
+[ext_resource type="Texture2D" uid="uid://c0l0fg5dovdc5" path="res://assets/prototype/PNG/Green/texture_01.png" id="1_13cr2"]
+[ext_resource type="Texture2D" uid="uid://hc6tjm0cf155" path="res://assets/prototype/PNG/Dark/texture_01.png" id="2_uoeao"]
+[ext_resource type="Texture2D" uid="uid://b4lidehksrxm4" path="res://assets/prototype/PNG/Orange/texture_01.png" id="3_grib8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_faxjv"]
+albedo_texture = ExtResource("1_13cr2")
+
+[sub_resource type="BoxMesh" id="BoxMesh_wnrpy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f1q6q"]
+albedo_texture = ExtResource("2_uoeao")
+uv1_triplanar = true
+uv2_triplanar = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1detn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sdlul"]
+albedo_texture = ExtResource("3_grib8")
+uv1_triplanar = true
+uv2_triplanar = true
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+material_overlay = SubResource("StandardMaterial3D_faxjv")
+mesh = SubResource("BoxMesh_wnrpy")
+surface_material_override/0 = SubResource("StandardMaterial3D_f1q6q")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
+shape = SubResource("BoxShape3D_1detn")
+
+[node name="Wall" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_wnrpy")
+surface_material_override/0 = SubResource("StandardMaterial3D_sdlul")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall/StaticBody3D"]
+shape = SubResource("BoxShape3D_1detn")

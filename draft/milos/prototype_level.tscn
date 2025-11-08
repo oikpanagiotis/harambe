@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://de42egtsurjc6"]
+
+[ext_resource type="PackedScene" uid="uid://dcoa380of2b8d" path="res://draft/milos/level_layout.tscn" id="1_ho1uv"]
+[ext_resource type="PackedScene" uid="uid://dwn4yi6l43rcc" path="res://draft/milos/fps_controller.tscn" id="1_wbvkr"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="LevelLayout" parent="." instance=ExtResource("1_ho1uv")]
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("1_wbvkr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.34256, 1.95995)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.437084, 0.899421, 0, -0.899421, 0.437084, -3.55445, 13.2671, 0)
