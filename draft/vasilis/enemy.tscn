@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://kwm0v810v5n6"]
+
+[ext_resource type="Script" uid="uid://j4r7xfv8oddo" path="res://draft/vasilis/enemy.gd" id="1_538v7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ybhwf"]
+albedo_color = Color(0.6969254, 0.18270525, 0.35581645, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ybhwf"]
+material = SubResource("StandardMaterial3D_ybhwf")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b568a"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_538v7"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_b568a"]
+material = SubResource("StandardMaterial3D_538v7")
+size = Vector3(1, 0.1, 0.4)
+
+[node name="Enemy" type="CharacterBody3D"]
+script = ExtResource("1_538v7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_ybhwf")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+debug_enabled = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_b568a")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10970989, 0.68345916, -0.27492455)
+mesh = SubResource("BoxMesh_b568a")

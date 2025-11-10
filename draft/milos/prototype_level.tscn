@@ -9,6 +9,7 @@
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("1_wbvkr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.611625, 1.95995)
+script = null
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.4370839, 0.89942074, 0, -0.89942074, 0.43708393, -9.217371, 13.2671, 0)

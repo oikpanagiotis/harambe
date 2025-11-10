@@ -29,7 +29,7 @@ var TILT_LOWER_LIMIT := deg_to_rad(-90.0)
 var TILT_UPPER_LIMIT := deg_to_rad(90.0)
 const SENSITIVITY = 0.004
 const bob_frequency = 1.0
-const bob_amplitude = 0.02
+const bob_amplitude = 0.2
 var time_bob = 0.0
 var juice_modifier = 1.0
 
