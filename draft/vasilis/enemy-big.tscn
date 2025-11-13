@@ -1,9 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://kwm0v810v5n6"]
+[gd_scene load_steps=7 format=3 uid="uid://bens6omy7cm8i"]
 
-[ext_resource type="Script" uid="uid://j4r7xfv8oddo" path="res://draft/vasilis/enemy.gd" id="1_538v7"]
+[ext_resource type="Script" uid="uid://j4r7xfv8oddo" path="res://draft/vasilis/enemy.gd" id="1_14l0y"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ybhwf"]
-albedo_color = Color(0.5987757, 0.33140892, 0.110022016, 1)
+albedo_color = Color(0.012876375, 0.0036419136, 0.00044340154, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_538v7"]
 material = SubResource("StandardMaterial3D_ybhwf")
@@ -18,9 +18,10 @@ material = SubResource("StandardMaterial3D_538v7")
 size = Vector3(1, 0.1, 0.4)
 
 [node name="Enemy" type="CharacterBody3D"]
-script = ExtResource("1_538v7")
+script = ExtResource("1_14l0y")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0014750957, 0.0056322813, -0.0027003288)
 mesh = SubResource("CapsuleMesh_538v7")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]

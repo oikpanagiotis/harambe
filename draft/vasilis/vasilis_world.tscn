@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://c3sr5a8nkf7k0"]
+[gd_scene load_steps=10 format=3 uid="uid://c3sr5a8nkf7k0"]
 
 [ext_resource type="PackedScene" uid="uid://c3r2f5geh61xt" path="res://draft/vasilis/floor_50.tscn" id="1_3qr7o"]
 [ext_resource type="PackedScene" uid="uid://kwm0v810v5n6" path="res://draft/vasilis/enemy.tscn" id="1_phq7d"]
 [ext_resource type="PackedScene" uid="uid://d0gyd0fr15ghj" path="res://draft/vasilis/obstacle.tscn" id="2_qv5ai"]
 [ext_resource type="PackedScene" uid="uid://dwn4yi6l43rcc" path="res://draft/milos/fps_controller.tscn" id="3_ey0i5"]
+[ext_resource type="PackedScene" uid="uid://bens6omy7cm8i" path="res://draft/vasilis/enemy-big.tscn" id="5_v26gy"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ey0i5"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -31,6 +32,7 @@ environment = SubResource("Environment_uy22w")
 [node name="obstacles" type="Node3D" parent="."]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="obstacles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2592306, -0.19023418, 1.8066005)
 navigation_mesh = SubResource("NavigationMesh_v26gy")
 
 [node name="Obstacle" parent="obstacles/NavigationRegion3D" instance=ExtResource("2_qv5ai")]
@@ -72,5 +74,29 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.389468, 1, -7.3978415)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3049248, 1.4847206, -1.5984399)
 
 [node name="Enemy" parent="." instance=ExtResource("1_phq7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.345911, 1.7166474, -12.113135)
+player_node = NodePath("../CharacterBody3D")
+
+[node name="Enemy2" parent="." instance=ExtResource("1_phq7d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7128944, 1.4360392, 1.0452197)
+player_node = NodePath("../CharacterBody3D")
+
+[node name="Enemy3" parent="." instance=ExtResource("1_phq7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.928668, 1.3116493, -6.0207825)
+player_node = NodePath("../CharacterBody3D")
+
+[node name="Enemy4" parent="." instance=ExtResource("1_phq7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.545374, 1.6817276, -3.466692)
+player_node = NodePath("../CharacterBody3D")
+
+[node name="Enemy-Big" parent="." instance=ExtResource("5_v26gy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.39839, 2.0188627, 4.6927705)
+player_node = NodePath("../CharacterBody3D")
+
+[node name="Enemy-Big3" parent="." instance=ExtResource("5_v26gy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2269812, 1.3028214, 6.8695254)
+player_node = NodePath("../CharacterBody3D")
+
+[node name="Enemy-Big2" parent="." instance=ExtResource("5_v26gy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.133684, 1.4367542, -6.3586493)
 player_node = NodePath("../CharacterBody3D")
