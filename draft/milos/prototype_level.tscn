@@ -1,15 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://de42egtsurjc6"]
+[gd_scene load_steps=7 format=3 uid="uid://ba4epeiu2xhgh"]
 
-[ext_resource type="PackedScene" uid="uid://dcoa380of2b8d" path="res://draft/milos/level_layout.tscn" id="1_ho1uv"]
-[ext_resource type="PackedScene" uid="uid://dwn4yi6l43rcc" path="res://draft/milos/fps_controller.tscn" id="1_wbvkr"]
+[ext_resource type="PackedScene" uid="uid://dcoa380of2b8d" path="res://draft/milos/level_layout.tscn" id="1_qdjcl"]
+[ext_resource type="PackedScene" uid="uid://dwn4yi6l43rcc" path="res://draft/milos/fps_controller.tscn" id="2_dcuui"]
+[ext_resource type="Shader" uid="uid://dw82e2wc6ei58" path="res://scripts/SkyShader.gdshader" id="3_2ily7"]
 
-[node name="Node3D" type="Node3D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ogcbk"]
+shader = ExtResource("3_2ily7")
+shader_parameter/skyColor = Color(0.23843598, 0.4630388, 0.9999767, 1)
+shader_parameter/horizonColor = Color(0.49610448, 0.65873295, 1, 1)
 
-[node name="LevelLayout" parent="." instance=ExtResource("1_ho1uv")]
+[sub_resource type="Sky" id="Sky_cabfg"]
+sky_material = SubResource("ShaderMaterial_ogcbk")
 
-[node name="CharacterBody3D" parent="." instance=ExtResource("1_wbvkr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.611625, 1.95995)
-script = null
+[sub_resource type="Environment" id="Environment_qwrtb"]
+background_mode = 2
+sky = SubResource("Sky_cabfg")
+ambient_light_source = 3
+
+[node name="PrototypeLevel2" type="Node2D"]
+
+[node name="LevelLayout" parent="." instance=ExtResource("1_qdjcl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.13471758, 0, 1.6539301)
+
+[node name="CollisionShape3D" parent="." instance=ExtResource("2_dcuui")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.945543, 5.2515345, 13.555491)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.4370839, 0.89942074, 0, -0.89942074, 0.43708393, -9.217371, 13.2671, 0)
+transform = Transform3D(-0.7691765, 0.6390364, 0, -0.06901551, -0.083070554, 0.99415094, 0.63529867, 0.7646775, 0.10799934, 0, 19.813652, 0)
+sky_mode = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_qwrtb")

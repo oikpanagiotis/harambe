@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://dwn4yi6l43rcc"]
+[gd_scene load_steps=6 format=3 uid="uid://dwn4yi6l43rcc"]
+
+[ext_resource type="Script" uid="uid://cwekmyxt1gwle" path="res://draft/milos/cammera_effects.gd" id="1_otnyb"]
+[ext_resource type="Script" uid="uid://d26ccnxnhnmwa" path="res://draft/milos/base_particle_spawner.gd" id="2_otnyb"]
 
 [sub_resource type="GDScript" id="GDScript_h1svc"]
 script/source = "extends CharacterBody3D
 
-@onready var camera := $Head/Camera3D
+@onready var camera := $Head/Neck/Camera3D
 @onready var head := $Head
+@onready var neck := $Head/Neck
 @onready var shape := $CollisionShape3D/MeshInstance3D
 @onready var right_collider := $Head/RightRaycast
 @onready var left_collider := $Head/LeftRaycast
@@ -46,8 +50,8 @@ func _unhandled_input(event) -> void:
 	#handle the cammera
 	if event is InputEventMouseMotion:
 		head.rotate_y(-event.relative.x * SENSITIVITY)
-		camera.rotate_x(-event.relative.y * SENSITIVITY)
-		camera.rotation.x = clamp(camera.rotation.x, TILT_LOWER_LIMIT, TILT_UPPER_LIMIT)
+		neck.rotate_x(-event.relative.y * SENSITIVITY)
+		neck.rotation.x = clamp(neck.rotation.x, TILT_LOWER_LIMIT, TILT_UPPER_LIMIT)
 
 func _physics_process(delta: float) -> void:
 	if is_falling() and Input.is_action_pressed(\"jump\"):
@@ -111,6 +115,8 @@ func handle_jump():
 		elif jump_buffer.time_left == jump_buffer.wait_time and is_on_wall_on_either_side():
 			velocity = get_walljump_wall_normal() * 20
 			velocity.y = JUMP_VELOCITY
+			camera.screen_shake(0.7)
+			$BaseParticleSpawner.spawn_wall_jump_particles()
 
 func add_juice(delta, speed) -> void:
 	#Bobbing
@@ -159,9 +165,12 @@ mesh = SubResource("CapsuleMesh_h3g6m")
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
-[node name="Camera3D" type="Camera3D" parent="Head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0634993, 0.125172, 0.203677)
+[node name="Neck" type="Node3D" parent="Head"]
+
+[node name="Camera3D" type="Camera3D" parent="Head/Neck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0634993, 0.12517202, 0.203677)
 cull_mask = 1048063
+script = ExtResource("1_otnyb")
 
 [node name="RightRaycast" type="RayCast3D" parent="Head"]
 transform = Transform3D(-4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0, 0, 0, 1, 0, -0.5, 0)
@@ -182,3 +191,7 @@ collision_mask = 7
 [node name="JumpBufferTimer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
+
+[node name="BaseParticleSpawner" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2392475, 0)
+script = ExtResource("2_otnyb")
