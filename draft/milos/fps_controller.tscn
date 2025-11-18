@@ -121,8 +121,8 @@ func handle_jump():
 func add_juice(delta, speed) -> void:
 	#Bobbing
 	time_bob += delta * velocity.length() * float(is_on_floor())
-	if is_on_floor():
-		camera.transform.origin = headbob(time_bob)
+	#if is_on_floor():
+		#camera.transform.origin = headbob(time_bob)
 	
 	# FOV
 	var velocity_clamped = clamp(velocity.length(), 0.5, speed * 2)
@@ -173,11 +173,11 @@ cull_mask = 1048063
 script = ExtResource("1_otnyb")
 
 [node name="RightRaycast" type="RayCast3D" parent="Head"]
-transform = Transform3D(-4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0, 0, 0, 1, 0, -0.5, 0)
+transform = Transform3D(-4.371139e-08, -1.5, 0, 1, -6.556708e-08, 0, 0, 0, 1, 0, -0.5, 0)
 collision_mask = 7
 
 [node name="LeftRaycast" type="RayCast3D" parent="Head"]
-transform = Transform3D(1.192488e-08, 0.99999994, 0, -0.99999994, 1.192488e-08, 0, 0, 0, 1, 0, -0.5, 0)
+transform = Transform3D(-4.371139e-08, 1.5, 0, -1, -6.556708e-08, 0, 0, 0, 1, 0, -0.5, 0)
 collision_mask = 7
 
 [node name="UpperFrontRaycast" type="RayCast3D" parent="Head"]
