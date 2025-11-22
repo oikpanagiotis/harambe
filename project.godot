@@ -33,6 +33,7 @@ project/assembly_name="harambe"
 
 enemies=""
 object=""
+floor=""
 
 [input]
 

@@ -19,6 +19,7 @@ script/source = "extends CharacterBody3D
 @onready var body_collider := $Head/FrontRaycast
 @onready var jump_buffer := $JumpBufferTimer
 @onready var arms := $Head/Neck/arms
+@onready var ground_pound_raycast := $GroundPoundRaycast
 
 @export var WALK_SPEED = 4.0
 @export var RUN_SPEED = 8.0
@@ -41,8 +42,6 @@ const bob_amplitude = 0.2
 var time_bob = 0.0
 var juice_modifier = 1.0
 
-var is_doing_ground_pound = false
-
 #fov variables
 const BASE_FOV = 80.0
 const FOV_CHANGE = 2.0
@@ -58,14 +57,21 @@ func _unhandled_input(event) -> void:
 		neck.rotation.x = clamp(neck.rotation.x, TILT_LOWER_LIMIT, TILT_UPPER_LIMIT)
 
 func _physics_process(delta: float) -> void:
-	if is_falling() and Input.is_action_pressed(\"jump\"):
-		current_mass = MASS * 2 
-		juice_modifier = 10.0
-		is_doing_ground_pound = true
+	if Input.is_action_pressed(\"jump\") and can_ground_pound():
+		arms.start_ground_pound()
 	else:
-		is_doing_ground_pound = false
 		current_mass = MASS
 		juice_modifier = 1.0
+	
+	if arms.are_doing_ground_pound():
+		current_mass = MASS * 2 
+		juice_modifier = 10.0
+	
+	
+	if is_on_floor():
+		if arms.are_doing_ground_pound():
+			arms.smash()
+	
 	
 	# Handle swing 
 	if Input.is_action_pressed(\"swing\"):
@@ -98,7 +104,7 @@ func handle_movement(speed, delta) -> void:
 	var direction = (head.transform.basis * transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized() 	
 	var target_velocity = Vector3.ZERO
 	
-	if is_doing_ground_pound:
+	if arms.are_doing_ground_pound():
 		velocity.x = 0
 		velocity.z = 0
 		return 
@@ -156,6 +162,16 @@ func headbob(time_bob):
 	position.y = sin(time_bob * bob_frequency) * bob_amplitude
 	position.x = cos(time_bob * bob_frequency / 2) * bob_amplitude
 	return position
+
+func can_ground_pound():
+	if is_falling() and not arms.are_doing_ground_pound():
+		if ground_pound_raycast.is_colliding():
+			var hit = ground_pound_raycast.get_collider()
+			if hit and hit.is_in_group(\"floor\"):
+				return false
+		return true
+	else: 
+		return false
 "
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hbvfc"]
@@ -226,3 +242,6 @@ script = ExtResource("4_x7tix")
 cull_mask = 1048574
 script = ExtResource("5_de6s6")
 MAIN_CAMERA = NodePath("../../../Head/Neck/Camera3D")
+
+[node name="GroundPoundRaycast" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 0, 0)

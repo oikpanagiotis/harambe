@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://yabuksukdwra"]
+[gd_scene load_steps=35 format=4 uid="uid://yabuksukdwra"]
 
 [ext_resource type="Script" uid="uid://bhc6776ugfvfl" path="res://draft/milos/player/scrips/arms.gd" id="1_f7f7v"]
 [ext_resource type="Texture2D" uid="uid://cfdnb1c1rjx6w" path="res://external_resources/arm/arm_UV_CHECKER.png" id="2_i0hdj"]
@@ -44,6 +44,144 @@ bind/2/pose = Transform3D(-0.7424594, -0.6698893, -0.0016135464, 0.6664848, -0.7
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_28m54"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_urnqp"]
+
+[sub_resource type="Animation" id="Animation_i0hdj"]
+resource_name = "Ground Pound Middle"
+loop_mode = 1
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ArmatureRight/Skeleton3D:Bone")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0.03333333, 1, 0.9371713, 0.04250009, 0.13788347, -0.31763476, 0.5, 1, 0.9198087, 0.049455903, 0.1355442, -0.3648751, 1, 1, 0.9371713, 0.04250009, 0.13788347, -0.31763476)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ArmatureRight/Skeleton3D:Bone.001")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0.03333333, 1, -0.18611218, 0.21615285, 0.019062946, 0.9582676, 0.5, 1, -0.31971124, 0.21128723, 0.049428552, 0.9223336, 1, 1, -0.18611218, 0.21615285, 0.019062946, 0.9582676)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ArmatureRight/Skeleton3D:Bone.002")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0.03333333, 1, -0.039094757, -0.028804787, 0.51529443, 0.85563636, 0.5, 1, -0.039094757, -0.028804787, 0.51529443, 0.85563636, 1, 1, -0.039094757, -0.028804787, 0.51529443, 0.85563636)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ArmatureLeft/Skeleton3D:Bone")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0.03333333, 1, 0.9594344, 0.0034260144, 0.14424448, -0.2422137, 0.5, 1, 0.9703417, -0.0037880337, 0.14423543, -0.19395567, 1, 1, 0.9594344, 0.0034260144, 0.14424448, -0.2422137)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ArmatureLeft/Skeleton3D:Bone.001")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0.03333333, 1, -0.15450431, 0.18090895, -0.08824606, 0.9672709, 0.5, 1, -0.25022274, 0.18880956, -0.069759525, 0.9470338, 1, 1, -0.15450431, 0.18090895, -0.08824606, 0.9672709)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ArmatureLeft/Skeleton3D:Bone.002")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0.03333333, 1, 0.13646084, -0.22015014, 0.64959997, 0.71479523, 0.5, 1, 0.13646081, -0.22015011, 0.64959997, 0.7147953, 1, 1, 0.13646084, -0.22015014, 0.64959997, 0.71479523)
+
+[sub_resource type="Animation" id="Animation_3q4tu"]
+resource_name = "Ground Pound Smash"
+length = 0.4
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ArmatureRight/Skeleton3D:Bone")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0.03333333, 1, 0.9371713, 0.04250009, 0.13788347, -0.31763476, 0.2, 1, -0.22955765, -0.13936453, -0.03735836, 0.962541)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ArmatureRight/Skeleton3D:Bone.001")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0.03333333, 1, -0.18611218, 0.21615285, 0.019062946, 0.9582676, 0.2, 1, -0.5874146, 0.18591152, 0.111903474, 0.7796529)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ArmatureRight/Skeleton3D:Bone.002")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0.03333333, 1, -0.039094757, -0.028804787, 0.51529443, 0.85563636, 0.2, 1, -0.039094757, -0.028804787, 0.51529443, 0.85563636)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ArmatureLeft/Skeleton3D:Bone")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0.03333333, 1, 0.9594344, 0.0034260144, 0.14424448, -0.2422137, 0.2, 1, -0.3352416, -0.12153858, -0.077759765, 0.9310182)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ArmatureLeft/Skeleton3D:Bone.001")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0.03333333, 1, -0.15450431, 0.18090895, -0.08824606, 0.9672709, 0.2, 1, -0.47031698, 0.20003657, -0.022378521, 0.859236)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ArmatureLeft/Skeleton3D:Bone.002")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0.03333333, 1, 0.13646084, -0.22015014, 0.64959997, 0.71479523, 0.2, 1, 0.13646081, -0.22015011, 0.64959997, 0.7147953)
+
+[sub_resource type="Animation" id="Animation_f7f7v"]
+resource_name = "Ground Pound Start"
+length = 0.2
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ArmatureRight/Skeleton3D:Bone")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.5347396, -0.11918984, -0.0813135, 0.8326076, 0.2, 1, 0.9371713, 0.04250009, 0.13788347, -0.31763476)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ArmatureRight/Skeleton3D:Bone.001")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -0.76907796, 0.15064251, 0.15618035, 0.6011936, 0.2, 1, -0.18611218, 0.21615285, 0.019062946, 0.9582676)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ArmatureRight/Skeleton3D:Bone.002")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, -0.039094757, -0.028804787, 0.51529443, 0.85563636, 0.2, 1, -0.039094757, -0.028804787, 0.51529443, 0.85563636)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ArmatureLeft/Skeleton3D:Bone")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, -0.45081607, -0.11067374, -0.09257173, 0.8808783, 0.2, 1, 0.9594344, 0.0034260144, 0.14424448, -0.2422137)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ArmatureLeft/Skeleton3D:Bone.001")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, -0.72124314, 0.19663395, 0.043017723, 0.6627918, 0.2, 1, -0.15450431, 0.18090895, -0.08824606, 0.9672709)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ArmatureLeft/Skeleton3D:Bone.002")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, 0.13646084, -0.22015014, 0.64959997, 0.7147952, 0.2, 1, 0.13646084, -0.22015014, 0.64959997, 0.71479523)
 
 [sub_resource type="Animation" id="Animation_28m54"]
 length = 0.001
@@ -142,7 +280,7 @@ tracks/6/path = NodePath(".")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.36666667, 1),
+"times": PackedFloat32Array(0, 0.33333334, 0.7),
 "transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": [],
@@ -208,7 +346,7 @@ tracks/6/path = NodePath(".")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.43333334, 1),
+"times": PackedFloat32Array(0, 0.36666667, 0.7),
 "transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": [],
@@ -317,12 +455,24 @@ tracks/5/keys = PackedFloat32Array(0, 1, 0.16058469, -0.2399467, 0.6042166, 0.74
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_urnqp"]
 _data = {
+&"Ground Pound Middle": SubResource("Animation_i0hdj"),
+&"Ground Pound Smash": SubResource("Animation_3q4tu"),
+&"Ground Pound Start": SubResource("Animation_f7f7v"),
 &"RESET": SubResource("Animation_28m54"),
 &"Swipe Left": SubResource("Animation_urnqp"),
 &"Swipe Right": SubResource("Animation_4fb7r"),
 &"idle": SubResource("Animation_lr47e"),
 &"jump": SubResource("Animation_aadqu")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f7f7v"]
+animation = &"Ground Pound Middle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i0hdj"]
+animation = &"Ground Pound Smash"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3q4tu"]
+animation = &"Ground Pound Start"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aadqu"]
 animation = &"Swipe Left"
@@ -343,7 +493,7 @@ advance_condition = &"is_swiping"
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wy1gd"]
 switch_mode = 2
 advance_mode = 2
-advance_condition = &"is_idle"
+advance_condition = &"stop_swinging"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vvhut"]
 switch_mode = 2
@@ -358,19 +508,46 @@ advance_condition = &"is_swiping"
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hbxom"]
 switch_mode = 2
 advance_mode = 2
+advance_condition = &"stop_swinging"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g3ysc"]
+advance_mode = 2
+advance_condition = &"is_ground_pounding"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h7sac"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"is_ground_pounding"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_py2lq"]
+advance_mode = 2
+advance_condition = &"is_idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pf4gl"]
+switch_mode = 2
+advance_mode = 2
 advance_condition = &"is_idle"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ptyi2"]
 states/End/position = Vector2(908, 132)
-states/Start/position = Vector2(403, 100)
+"states/Ground Pound Middle/node" = SubResource("AnimationNodeAnimation_f7f7v")
+"states/Ground Pound Middle/position" = Vector2(908, 376)
+"states/Ground Pound Smash/node" = SubResource("AnimationNodeAnimation_i0hdj")
+"states/Ground Pound Smash/position" = Vector2(578, 376)
+"states/Ground Pound Start/node" = SubResource("AnimationNodeAnimation_3q4tu")
+"states/Ground Pound Start/position" = Vector2(908, 256)
+states/Start/position = Vector2(334, 190)
 "states/Swipe Left/node" = SubResource("AnimationNodeAnimation_aadqu")
 "states/Swipe Left/position" = Vector2(530, 18)
 "states/Swipe Right/node" = SubResource("AnimationNodeAnimation_kxpeu")
 "states/Swipe Right/position" = Vector2(807, 18)
 states/idle/node = SubResource("AnimationNodeAnimation_vt74t")
 states/idle/position = Vector2(578, 256)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_jqnnt"), "idle", "Swipe Left", SubResource("AnimationNodeStateMachineTransition_q7pt1"), "Swipe Left", "idle", SubResource("AnimationNodeStateMachineTransition_wy1gd"), "Swipe Left", "Swipe Right", SubResource("AnimationNodeStateMachineTransition_vvhut"), "Swipe Right", "Swipe Left", SubResource("AnimationNodeStateMachineTransition_fjus6"), "Swipe Right", "idle", SubResource("AnimationNodeStateMachineTransition_hbxom")]
-graph_offset = Vector2(121, -130)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_jqnnt"), "idle", "Swipe Left", SubResource("AnimationNodeStateMachineTransition_q7pt1"), "Swipe Left", "idle", SubResource("AnimationNodeStateMachineTransition_wy1gd"), "Swipe Left", "Swipe Right", SubResource("AnimationNodeStateMachineTransition_vvhut"), "Swipe Right", "Swipe Left", SubResource("AnimationNodeStateMachineTransition_fjus6"), "Swipe Right", "idle", SubResource("AnimationNodeStateMachineTransition_hbxom"), "idle", "Ground Pound Start", SubResource("AnimationNodeStateMachineTransition_g3ysc"), "Ground Pound Start", "Ground Pound Middle", SubResource("AnimationNodeStateMachineTransition_h7sac"), "Ground Pound Middle", "Ground Pound Smash", SubResource("AnimationNodeStateMachineTransition_py2lq"), "Ground Pound Smash", "idle", SubResource("AnimationNodeStateMachineTransition_pf4gl")]
+graph_offset = Vector2(-42, 96.00099)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_f7f7v"]
+radius = 9.975336
 
 [node name="arms" type="Node3D"]
 script = ExtResource("1_f7f7v")
@@ -385,14 +562,14 @@ bones/0/rest = Transform3D(0.9583636, 0.26287568, -0.11151408, -0.28555018, 0.88
 bones/0/enabled = true
 bones/0/position = Vector3(0, 0.06975365, -0.3405621)
 bones/0/rotation = Quaternion(-0.4410215, -0.10964053, -0.09379318, 0.88582283)
-bones/0/scale = Vector3(0.9999997, 0.9999998, 0.9999999)
+bones/0/scale = Vector3(0.9999999, 0.99999994, 1)
 bones/1/name = "Bone.001"
 bones/1/parent = 0
 bones/1/rest = Transform3D(0.99814373, 0.060902752, 0.00010854187, -0.055788595, 0.913609, 0.40274802, 0.024429299, -0.4020064, 0.9153109, 5.162292e-09, 1.2573699, -8.381903e-09)
 bones/1/enabled = true
 bones/1/position = Vector3(-3.8501067e-08, 1.2573699, -1.446012e-07)
 bones/1/rotation = Quaternion(-0.7171194, 0.2031116, 0.04617091, 0.6650968)
-bones/1/scale = Vector3(0.99999964, 1.000001, 0.9999998)
+bones/1/scale = Vector3(1, 1.000001, 0.9999998)
 bones/2/name = "Bone.002"
 bones/2/parent = 1
 bones/2/rest = Transform3D(0.46728384, -0.8795572, -0.089583464, 0.8840615, 0.46588656, 0.03721589, 0.009002227, -0.096587695, 0.9952838, 6.475966e-08, 1.0124248, 3.0267984e-09)
@@ -407,7 +584,7 @@ mesh = SubResource("ArrayMesh_uvpoq")
 skin = SubResource("Skin_tkmds")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="ArmatureLeft/Skeleton3D"]
-transform = Transform3D(0.1881562, -0.9073241, 0.37597948, -0.42282015, 0.27069274, 0.86484045, -0.8864656, -0.32169712, -0.33270127, 0.08514495, 0.06177628, -1.9265015)
+transform = Transform3D(0.18815628, -0.90732455, 0.3759795, -0.4228203, 0.27069294, 0.8648406, -0.88646567, -0.32169724, -0.33270133, 0.08514494, 0.06177628, -1.9265015)
 bone_name = "Bone.002"
 bone_idx = 2
 
@@ -427,14 +604,14 @@ bones/0/rest = Transform3D(0.9583636, 0.26287568, -0.11151408, -0.28555018, 0.88
 bones/0/enabled = true
 bones/0/position = Vector3(1.5497208e-06, 0.06975365, -0.3405621)
 bones/0/rotation = Quaternion(-0.5197554, -0.117715746, -0.083433256, 0.842043)
-bones/0/scale = Vector3(0.9999993, 0.99999964, 0.9999999)
+bones/0/scale = Vector3(0.9999993, 0.9999996, 0.9999996)
 bones/1/name = "Bone.001"
 bones/1/parent = 0
 bones/1/rest = Transform3D(0.99814373, 0.060902752, 0.00010854187, -0.055788595, 0.913609, 0.40274802, 0.024429299, -0.4020064, 0.9153109, 5.162292e-09, 1.2573699, -8.381903e-09)
 bones/1/enabled = true
 bones/1/position = Vector3(5.9861435e-07, 1.2573704, 1.4538068e-07)
 bones/1/rotation = Quaternion(-0.7691073, 0.15063818, 0.15616745, 0.6011605)
-bones/1/scale = Vector3(1.0000006, 1.0000001, 1.0000004)
+bones/1/scale = Vector3(1.0000006, 1.0000001, 1.0000005)
 bones/2/name = "Bone.002"
 bones/2/parent = 1
 bones/2/rest = Transform3D(0.46728384, -0.8795572, -0.089583464, 0.8840615, 0.46588656, 0.03721589, 0.009002227, -0.096587695, 0.9952838, 6.475966e-08, 1.0124248, 3.0267984e-09)
@@ -449,7 +626,7 @@ mesh = SubResource("ArrayMesh_uvpoq")
 skin = SubResource("Skin_tkmds")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="ArmatureRight/Skeleton3D"]
-transform = Transform3D(0.10148073, -0.9864781, 0.12869552, -0.9700071, -0.069394134, 0.23295988, -0.2208791, -0.14847639, -0.96393305, -0.03908381, -0.2618826, -1.7205042)
+transform = Transform3D(0.1014807, -0.9864781, 0.12869549, -0.97000694, -0.0693942, 0.23295994, -0.22087899, -0.14847639, -0.9639331, -0.03908387, -0.26188242, -1.720504)
 bone_name = "Bone.002"
 bone_idx = 2
 
@@ -467,5 +644,12 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_ptyi2")
 anim_player = NodePath("../AnimationPlayer")
-parameters/conditions/is_idle = true
+parameters/conditions/is_ground_pounding = false
+parameters/conditions/is_idle = false
 parameters/conditions/is_swiping = false
+parameters/conditions/stop_swinging = false
+
+[node name="GroundPountHitbox" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GroundPountHitbox"]
+shape = SubResource("SphereShape3D_f7f7v")

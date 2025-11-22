@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://ba4epeiu2xhgh"]
+[gd_scene load_steps=12 format=3 uid="uid://ba4epeiu2xhgh"]
 
 [ext_resource type="PackedScene" uid="uid://dcoa380of2b8d" path="res://draft/milos/level_layout.tscn" id="1_qdjcl"]
 [ext_resource type="PackedScene" uid="uid://dwn4yi6l43rcc" path="res://draft/milos/player/scenes/fps_controller.tscn" id="2_dcuui"]
 [ext_resource type="Shader" uid="uid://dw82e2wc6ei58" path="res://scripts/SkyShader.gdshader" id="3_2ily7"]
 [ext_resource type="PackedScene" uid="uid://bens6omy7cm8i" path="res://draft/vasilis/enemy-big.tscn" id="4_dcuui"]
+[ext_resource type="PackedScene" uid="uid://c2snk2eob2q0v" path="res://assets/KayKit_City_Builder_Bits_1.0_FREE/Assets/fbx/box_B.fbx" id="5_2ily7"]
+[ext_resource type="PackedScene" uid="uid://b4yckbt7bc6wx" path="res://assets/KayKit_City_Builder_Bits_1.0_FREE/Assets/fbx/dumpster.fbx" id="6_sdn3o"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ogcbk"]
 shader = ExtResource("3_2ily7")
@@ -18,9 +20,10 @@ background_mode = 2
 sky = SubResource("Sky_cabfg")
 ambient_light_source = 3
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_dcuui"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_sdn3o"]
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_2ily7"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_mn2ih"]
+size = Vector3(2.7312012, 1.597229, 1.8891602)
 
 [node name="PrototypeLevel" type="Node2D"]
 
@@ -45,38 +48,31 @@ script = null
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.65121, 1.9943677, 8.695152)
 script = null
 
-[node name="Barrel" type="RigidBody3D" parent="." groups=["object"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.889617, 4.0696588, 12.22072)
+[node name="Box" type="RigidBody3D" parent="." groups=["object"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.714087, 1.8986223, 12.22072)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Barrel"]
-shape = SubResource("CylinderShape3D_dcuui")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box"]
+shape = SubResource("BoxShape3D_sdn3o")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Barrel"]
-mesh = SubResource("CylinderMesh_2ily7")
+[node name="box_B" parent="Box" instance=ExtResource("5_2ily7")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -0.5549364, 0)
 
-[node name="RigidBody3D2" type="RigidBody3D" parent="." groups=["object"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.889617, 4.0696588, 14.039557)
+[node name="Box2" type="RigidBody3D" parent="." groups=["object"]]
+transform = Transform3D(0.89879405, 0, 0.43837115, 0, 1, 0, -0.43837115, 0, 0.89879405, 2.2285285, 1.8986223, 11.647992)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D2"]
-shape = SubResource("CylinderShape3D_dcuui")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box2"]
+shape = SubResource("BoxShape3D_sdn3o")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D2"]
-mesh = SubResource("CylinderMesh_2ily7")
+[node name="box_B" parent="Box2" instance=ExtResource("5_2ily7")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -0.5549364, 0)
 
-[node name="RigidBody3D3" type="RigidBody3D" parent="." groups=["object"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.889617, 4.0696588, 15.70035)
+[node name="Dumpster" type="RigidBody3D" parent="." groups=["object"]]
+transform = Transform3D(0.83484787, 0, 0.5504807, 0, 1, 0, -0.5504807, 0, 0.83484787, -0.26652884, 1.0920901, 10.62559)
+mass = 2.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D3"]
-shape = SubResource("CylinderShape3D_dcuui")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dumpster"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.822, 0)
+shape = SubResource("BoxShape3D_mn2ih")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D3"]
-mesh = SubResource("CylinderMesh_2ily7")
-
-[node name="RigidBody3D4" type="RigidBody3D" parent="." groups=["object"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.252554, 4.0696588, 12.22072)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D4"]
-shape = SubResource("CylinderShape3D_dcuui")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D4"]
-mesh = SubResource("CylinderMesh_2ily7")
+[node name="dumpster" parent="Dumpster" instance=ExtResource("6_sdn3o")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)

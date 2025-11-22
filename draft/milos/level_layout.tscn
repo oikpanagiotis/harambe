@@ -2,9 +2,9 @@
 
 [ext_resource type="MeshLibrary" uid="uid://bkhx4h3ikm8tr" path="res://assets/mesh_lib.tres" id="1_ljsw8"]
 
-[node name="LevelLayout" type="Node3D"]
+[node name="LevelLayout" type="Node3D" groups=["floor"]]
 
-[node name="Foor" type="GridMap" parent="."]
+[node name="Foor" type="GridMap" parent="." groups=["floor"]]
 mesh_library = ExtResource("1_ljsw8")
 cell_size = Vector3(1, 1, 1)
 data = {
