@@ -12,8 +12,8 @@ var offset_y
 
 func _ready():
 	player = get_node(player_node)
-	offset_x = randf_range(-5.0, 5.0)
-	offset_y = randf_range(-5.0, 5.0)
+	offset_x = randf_range(-10.0, 10.0)
+	offset_y = randf_range(-10.0, 10.0)
 	
 func _physics_process(delta: float) -> void:
 	var player_position = player.global_transform.origin

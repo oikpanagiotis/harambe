@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://ba4epeiu2xhgh"]
+[gd_scene load_steps=10 format=3 uid="uid://ba4epeiu2xhgh"]
 
 [ext_resource type="PackedScene" uid="uid://dcoa380of2b8d" path="res://draft/milos/level_layout.tscn" id="1_qdjcl"]
-[ext_resource type="PackedScene" uid="uid://dwn4yi6l43rcc" path="res://draft/milos/fps_controller.tscn" id="2_dcuui"]
+[ext_resource type="PackedScene" uid="uid://dwn4yi6l43rcc" path="res://draft/milos/player/scenes/fps_controller.tscn" id="2_dcuui"]
 [ext_resource type="Shader" uid="uid://dw82e2wc6ei58" path="res://scripts/SkyShader.gdshader" id="3_2ily7"]
+[ext_resource type="PackedScene" uid="uid://bens6omy7cm8i" path="res://draft/vasilis/enemy-big.tscn" id="4_dcuui"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ogcbk"]
 shader = ExtResource("3_2ily7")
@@ -17,7 +18,11 @@ background_mode = 2
 sky = SubResource("Sky_cabfg")
 ambient_light_source = 3
 
-[node name="PrototypeLevel2" type="Node2D"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_dcuui"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2ily7"]
+
+[node name="PrototypeLevel" type="Node2D"]
 
 [node name="LevelLayout" parent="." instance=ExtResource("1_qdjcl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.13471758, 0, 1.6539301)
@@ -31,3 +36,47 @@ sky_mode = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_qwrtb")
+
+[node name="Enemy" parent="." groups=["enemies"] instance=ExtResource("4_dcuui")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.65121, 1.9943677, 6.2052493)
+script = null
+
+[node name="Enemy2" parent="." groups=["enemies"] instance=ExtResource("4_dcuui")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.65121, 1.9943677, 8.695152)
+script = null
+
+[node name="Barrel" type="RigidBody3D" parent="." groups=["object"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.889617, 4.0696588, 12.22072)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Barrel"]
+shape = SubResource("CylinderShape3D_dcuui")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Barrel"]
+mesh = SubResource("CylinderMesh_2ily7")
+
+[node name="RigidBody3D2" type="RigidBody3D" parent="." groups=["object"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.889617, 4.0696588, 14.039557)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D2"]
+shape = SubResource("CylinderShape3D_dcuui")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D2"]
+mesh = SubResource("CylinderMesh_2ily7")
+
+[node name="RigidBody3D3" type="RigidBody3D" parent="." groups=["object"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.889617, 4.0696588, 15.70035)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D3"]
+shape = SubResource("CylinderShape3D_dcuui")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D3"]
+mesh = SubResource("CylinderMesh_2ily7")
+
+[node name="RigidBody3D4" type="RigidBody3D" parent="." groups=["object"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.252554, 4.0696588, 12.22072)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D4"]
+shape = SubResource("CylinderShape3D_dcuui")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D4"]
+mesh = SubResource("CylinderMesh_2ily7")

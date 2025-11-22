@@ -1,6 +1,6 @@
 extends Node3D
 
-var cloud_particles = preload("res://draft/milos/cloud.tscn")
+var cloud_particles = preload("res://draft/milos/particles/cloud.tscn")
 func spawn_wall_jump_particles():
 	var cloud := cloud_particles.instantiate()
 	cloud.global_position = global_position

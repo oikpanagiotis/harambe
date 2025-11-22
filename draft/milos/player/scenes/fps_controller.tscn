@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwn4yi6l43rcc"]
+[gd_scene load_steps=9 format=3 uid="uid://dwn4yi6l43rcc"]
 
-[ext_resource type="Script" uid="uid://cwekmyxt1gwle" path="res://draft/milos/cammera_effects.gd" id="1_otnyb"]
-[ext_resource type="Script" uid="uid://d26ccnxnhnmwa" path="res://draft/milos/base_particle_spawner.gd" id="2_otnyb"]
+[ext_resource type="Script" uid="uid://cwekmyxt1gwle" path="res://draft/milos/player/scrips/cammera_effects.gd" id="1_otnyb"]
+[ext_resource type="PackedScene" uid="uid://yabuksukdwra" path="res://draft/milos/player/scenes/arms.tscn" id="2_8lawo"]
+[ext_resource type="Script" uid="uid://d26ccnxnhnmwa" path="res://draft/milos/player/scrips/base_particle_spawner.gd" id="2_otnyb"]
+[ext_resource type="Script" uid="uid://2wm8ape8vgbq" path="res://draft/milos/player/scrips/sub_viewport.gd" id="4_x7tix"]
+[ext_resource type="Script" uid="uid://dtgn5vu5vmvae" path="res://draft/milos/player/scrips/arm_camera.gd" id="5_de6s6"]
 
 [sub_resource type="GDScript" id="GDScript_h1svc"]
 script/source = "extends CharacterBody3D
@@ -15,6 +18,7 @@ script/source = "extends CharacterBody3D
 @onready var face_collider := $Head/UpperFrontRaycast
 @onready var body_collider := $Head/FrontRaycast
 @onready var jump_buffer := $JumpBufferTimer
+@onready var arms := $Head/Neck/arms
 
 @export var WALK_SPEED = 4.0
 @export var RUN_SPEED = 8.0
@@ -63,8 +67,14 @@ func _physics_process(delta: float) -> void:
 		current_mass = MASS
 		juice_modifier = 1.0
 	
+	# Handle swing 
+	if Input.is_action_pressed(\"swing\"):
+		arms.swing()
+	else:
+		arms.stop_swinging()
+	
 	# Handle sprint 
-	if Input.is_action_pressed(\"sprint\"):
+	if not arms.are_swinging() && Input.is_action_pressed(\"sprint\"):
 		speed = RUN_SPEED
 	else:
 		speed = WALK_SPEED
@@ -117,7 +127,7 @@ func handle_jump():
 			velocity.y = JUMP_VELOCITY
 			camera.screen_shake(0.7)
 			$BaseParticleSpawner.spawn_wall_jump_particles()
-
+			
 func add_juice(delta, speed) -> void:
 	#Bobbing
 	time_bob += delta * velocity.length() * float(is_on_floor())
@@ -169,8 +179,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head/Neck"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0634993, 0.12517202, 0.203677)
-cull_mask = 1048063
+cull_mask = 1048061
 script = ExtResource("1_otnyb")
+
+[node name="arms" parent="Head/Neck" instance=ExtResource("2_8lawo")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, -0.86293435, 0.4747917)
 
 [node name="RightRaycast" type="RayCast3D" parent="Head"]
 transform = Transform3D(-4.371139e-08, -1.5, 0, 1, -6.556708e-08, 0, 0, 0, 1, 0, -0.5, 0)
@@ -195,3 +208,21 @@ one_shot = true
 [node name="BaseParticleSpawner" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2392475, 0)
 script = ExtResource("2_otnyb")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+script = ExtResource("4_x7tix")
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("MAIN_CAMERA")]
+cull_mask = 1048574
+script = ExtResource("5_de6s6")
+MAIN_CAMERA = NodePath("../../../Head/Neck/Camera3D")
