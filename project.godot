@@ -87,6 +87,10 @@ ground_pound={
 
 3d_render/disable_vsync=true
 
+[physics]
+
+3d/physics_engine="Jolt Physics"
+
 [rendering]
 
 renderer/rendering_method="mobile"
