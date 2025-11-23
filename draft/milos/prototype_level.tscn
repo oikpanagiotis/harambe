@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://dwn4yi6l43rcc" path="res://draft/milos/player/scenes/fps_controller.tscn" id="2_dcuui"]
 [ext_resource type="Shader" uid="uid://dw82e2wc6ei58" path="res://scripts/SkyShader.gdshader" id="3_2ily7"]
 [ext_resource type="PackedScene" uid="uid://bens6omy7cm8i" path="res://draft/vasilis/scenes/enemy-big.tscn" id="4_dcuui"]
-[ext_resource type="PackedScene" uid="uid://c2snk2eob2q0v" path="res://assets/KayKit_City_Builder_Bits_1.0_FREE/Assets/fbx/box_B.fbx" id="5_2ily7"]
-[ext_resource type="PackedScene" uid="uid://b4yckbt7bc6wx" path="res://assets/KayKit_City_Builder_Bits_1.0_FREE/Assets/fbx/dumpster.fbx" id="6_sdn3o"]
+[ext_resource type="PackedScene" uid="uid://coqvct6jq32fi" path="res://assets/KayKit_City_Builder_Bits_1.0_FREE/Assets/fbx/box_B.fbx" id="5_2ily7"]
+[ext_resource type="PackedScene" uid="uid://cphk3084qjq8t" path="res://assets/KayKit_City_Builder_Bits_1.0_FREE/Assets/fbx/dumpster.fbx" id="6_sdn3o"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ogcbk"]
 shader = ExtResource("3_2ily7")

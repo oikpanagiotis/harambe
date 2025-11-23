@@ -1,0 +1,31 @@
+[gd_scene load_steps=10 format=3 uid="uid://dl48p2n688dmg"]
+
+[ext_resource type="PackedScene" uid="uid://buykee3drpxbq" path="res://draft/panos/composed_blocks/Base.tscn" id="1_te62n"]
+[ext_resource type="PackedScene" uid="uid://b2ir5q1bseggo" path="res://draft/panos/composed_blocks/BuildingA.tscn" id="2_lwsj1"]
+[ext_resource type="PackedScene" uid="uid://4f7w2jv3n1wh" path="res://draft/panos/composed_blocks/BuildingB.tscn" id="3_j1ycb"]
+[ext_resource type="PackedScene" uid="uid://6v2i1o0nkbrc" path="res://draft/panos/composed_blocks/BuildingC.tscn" id="4_jq30g"]
+[ext_resource type="PackedScene" uid="uid://dojm6p071ll6l" path="res://draft/panos/composed_blocks/BuildingD.tscn" id="5_4rrgk"]
+[ext_resource type="PackedScene" uid="uid://lkrgy6wkhhwx" path="res://draft/panos/composed_blocks/RoadJunction.tscn" id="6_ot3rj"]
+[ext_resource type="PackedScene" uid="uid://b4ylym8bpgrm3" path="res://draft/panos/composed_blocks/RoadLeft.tscn" id="7_mampc"]
+[ext_resource type="PackedScene" uid="uid://c0ug3ypb0k7if" path="res://draft/panos/composed_blocks/RoadRight.tscn" id="8_oxuqo"]
+[ext_resource type="PackedScene" uid="uid://cwddyxal3dupq" path="res://draft/panos/composed_blocks/RoadStraight.tscn" id="9_ebbwe"]
+
+[node name="MeshLibrary" type="Node3D"]
+
+[node name="Base" parent="." instance=ExtResource("1_te62n")]
+
+[node name="Building" parent="." instance=ExtResource("2_lwsj1")]
+
+[node name="BuildingB" parent="." instance=ExtResource("3_j1ycb")]
+
+[node name="BuildingC" parent="." instance=ExtResource("4_jq30g")]
+
+[node name="BuildingD" parent="." instance=ExtResource("5_4rrgk")]
+
+[node name="RoadJunction" parent="." instance=ExtResource("6_ot3rj")]
+
+[node name="RoadLeft" parent="." instance=ExtResource("7_mampc")]
+
+[node name="RoadRight" parent="." instance=ExtResource("8_oxuqo")]
+
+[node name="RoadStraight" parent="." instance=ExtResource("9_ebbwe")]
