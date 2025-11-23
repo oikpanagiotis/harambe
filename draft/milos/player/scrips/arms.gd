@@ -4,7 +4,6 @@ extends Node3D
 # Resources
 # ---------------------------------------------------------
 var cloud_particles := preload("res://draft/milos/particles/cloud.tscn")
-
 # ---------------------------------------------------------
 # Nodes
 # ---------------------------------------------------------
@@ -27,14 +26,22 @@ var hand_velocity_right: Vector3
 var bodies_already_hit_in_swing := []
 
 func _ready():
-	_set_idle(true)
-	
 	hitbox_left.body_entered.connect(_on_body_entered_left)
 	hitbox_right.body_entered.connect(_on_body_entered_right)
 
 	hitbox_left.monitoring = false
 	hitbox_right.monitoring = false
 
+	playback.state_started.connect(_on_state_entered)
+
+func _on_state_entered(state_name):
+	if state_name == "idle":
+		_set_swiping(false)
+		_set_stop_swinging(false)
+		_set_ground_pounding(false)
+		_set_ground_pound_end(false)
+
+	
 func _physics_process(delta):
 	hand_velocity_left  = _update_hand_velocity(hitbox_left,  prev_hand_pos_left,  delta)
 	hand_velocity_right = _update_hand_velocity(hitbox_right, prev_hand_pos_right, delta)
@@ -45,9 +52,6 @@ func _update_hand_velocity(hitbox: Area3D, prev_pos: Vector3, delta: float) -> V
 	prev_pos = new_pos
 	return vel
 
-func _set_idle(on: bool):
-	animation_tree["parameters/conditions/is_idle"] = on
-
 func _set_swiping(on: bool):
 	animation_tree["parameters/conditions/is_swiping"] = on
 
@@ -55,7 +59,7 @@ func _set_stop_swinging(on: bool):
 	animation_tree["parameters/conditions/stop_swinging"] = on
 
 func _set_ground_pounding(on: bool):
-	animation_tree["parameters/conditions/is_ground_pounding"] = on
+	animation_tree["parameters/conditions/ground_pounding"] = on
 
 func _set_ground_pound_end(on: bool):
 	animation_tree["parameters/conditions/is_ground_pound_end"] = on
@@ -63,43 +67,41 @@ func _set_ground_pound_end(on: bool):
 # =========== ACTIONS =======================================
 func swing():
 	_set_swiping(true)
-	_set_idle(false)
+	_set_stop_swinging(false)
 	_set_ground_pounding(false)
+	_set_ground_pound_end(false)
 
-func jump():
+func stop_swinging():
 	_set_swiping(false)
-	_set_idle(false)
+	_set_stop_swinging(true)
 	_set_ground_pounding(false)
 	_set_ground_pound_end(false)
 
 func start_ground_pound():
 	_set_swiping(false)
-	_set_idle(false)
+	_set_stop_swinging(false)
 	_set_ground_pounding(true)
-
+	_set_ground_pound_end(false)
+	
 func smash():
-	cam.screen_shake(2)
-	particles.spawn_wall_jump_particles()
-
 	_set_swiping(false)
-	_set_idle(true)
+	_set_stop_swinging(false)
 	_set_ground_pounding(false)
+	_set_ground_pound_end(true)
+	
+	cam.screen_shake(2)
+	particles.spawn_landing_particles()
 
 	for body in ground_pound_hitbox.get_overlapping_bodies():
 		if body.is_in_group("object"):
 			var dir = (body.global_position - ground_pound_hitbox.global_position).normalized()
-			body.apply_impulse(dir * 20.0)
+			body.apply_impulse(dir * 40.0)
 
-
-func stop_swinging():
-	_set_swiping(false)
-	_set_stop_swinging(true)
-	
 func are_swinging() -> bool:
 	return animation_tree["parameters/conditions/is_swiping"]
 
 func are_doing_ground_pound() -> bool:
-	return animation_tree["parameters/conditions/is_ground_pounding"]
+	return animation_tree["parameters/conditions/ground_pounding"]
 
 func are_smashing() -> bool:
 	return playback.get_current_node() == "Ground Pound Smash"

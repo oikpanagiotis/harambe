@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://yabuksukdwra"]
+[gd_scene load_steps=37 format=4 uid="uid://yabuksukdwra"]
 
 [ext_resource type="Script" uid="uid://bhc6776ugfvfl" path="res://draft/milos/player/scrips/arms.gd" id="1_f7f7v"]
 [ext_resource type="Texture2D" uid="uid://cfdnb1c1rjx6w" path="res://external_resources/arm/arm_UV_CHECKER.png" id="2_i0hdj"]
@@ -480,8 +480,11 @@ animation = &"Swipe Left"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kxpeu"]
 animation = &"Swipe Right"
 
+[sub_resource type="GDScript" id="GDScript_f7f7v"]
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vt74t"]
 animation = &"idle"
+script = SubResource("GDScript_f7f7v")
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jqnnt"]
 advance_mode = 2
@@ -510,23 +513,27 @@ switch_mode = 2
 advance_mode = 2
 advance_condition = &"stop_swinging"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g3ysc"]
-advance_mode = 2
-advance_condition = &"is_ground_pounding"
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h7sac"]
 switch_mode = 2
 advance_mode = 2
-advance_condition = &"is_ground_pounding"
+advance_condition = &"ground_pounding"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_py2lq"]
 advance_mode = 2
-advance_condition = &"is_idle"
+advance_condition = &"is_ground_pound_end"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pf4gl"]
 switch_mode = 2
 advance_mode = 2
-advance_condition = &"is_idle"
+advance_condition = &"is_ground_pound_end"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f7f7v"]
+advance_mode = 2
+advance_condition = &"is_ground_pound_end"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i0hdj"]
+advance_mode = 2
+advance_condition = &"ground_pounding"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ptyi2"]
 states/End/position = Vector2(908, 132)
@@ -543,8 +550,8 @@ states/Start/position = Vector2(334, 190)
 "states/Swipe Right/position" = Vector2(807, 18)
 states/idle/node = SubResource("AnimationNodeAnimation_vt74t")
 states/idle/position = Vector2(578, 256)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_jqnnt"), "idle", "Swipe Left", SubResource("AnimationNodeStateMachineTransition_q7pt1"), "Swipe Left", "idle", SubResource("AnimationNodeStateMachineTransition_wy1gd"), "Swipe Left", "Swipe Right", SubResource("AnimationNodeStateMachineTransition_vvhut"), "Swipe Right", "Swipe Left", SubResource("AnimationNodeStateMachineTransition_fjus6"), "Swipe Right", "idle", SubResource("AnimationNodeStateMachineTransition_hbxom"), "idle", "Ground Pound Start", SubResource("AnimationNodeStateMachineTransition_g3ysc"), "Ground Pound Start", "Ground Pound Middle", SubResource("AnimationNodeStateMachineTransition_h7sac"), "Ground Pound Middle", "Ground Pound Smash", SubResource("AnimationNodeStateMachineTransition_py2lq"), "Ground Pound Smash", "idle", SubResource("AnimationNodeStateMachineTransition_pf4gl")]
-graph_offset = Vector2(-42, 96.00099)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_jqnnt"), "idle", "Swipe Left", SubResource("AnimationNodeStateMachineTransition_q7pt1"), "Swipe Left", "idle", SubResource("AnimationNodeStateMachineTransition_wy1gd"), "Swipe Left", "Swipe Right", SubResource("AnimationNodeStateMachineTransition_vvhut"), "Swipe Right", "Swipe Left", SubResource("AnimationNodeStateMachineTransition_fjus6"), "Swipe Right", "idle", SubResource("AnimationNodeStateMachineTransition_hbxom"), "Ground Pound Start", "Ground Pound Middle", SubResource("AnimationNodeStateMachineTransition_h7sac"), "Ground Pound Middle", "Ground Pound Smash", SubResource("AnimationNodeStateMachineTransition_py2lq"), "Ground Pound Smash", "idle", SubResource("AnimationNodeStateMachineTransition_pf4gl"), "Ground Pound Start", "idle", SubResource("AnimationNodeStateMachineTransition_f7f7v"), "idle", "Ground Pound Start", SubResource("AnimationNodeStateMachineTransition_i0hdj")]
+graph_offset = Vector2(-35, 30.7829)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_f7f7v"]
 radius = 9.975336
@@ -644,8 +651,8 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_ptyi2")
 anim_player = NodePath("../AnimationPlayer")
-parameters/conditions/is_ground_pounding = false
-parameters/conditions/is_idle = false
+parameters/conditions/ground_pounding = true
+parameters/conditions/is_ground_pound_end = false
 parameters/conditions/is_swiping = false
 parameters/conditions/stop_swinging = false
 

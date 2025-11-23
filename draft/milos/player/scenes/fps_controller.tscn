@@ -57,7 +57,7 @@ func _unhandled_input(event) -> void:
 		neck.rotation.x = clamp(neck.rotation.x, TILT_LOWER_LIMIT, TILT_UPPER_LIMIT)
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_pressed(\"jump\") and can_ground_pound():
+	if Input.is_action_pressed(\"ground_pound\") and can_ground_pound():
 		arms.start_ground_pound()
 	else:
 		current_mass = MASS
@@ -76,7 +76,7 @@ func _physics_process(delta: float) -> void:
 	# Handle swing 
 	if Input.is_action_pressed(\"swing\"):
 		arms.swing()
-	else:
+	elif arms.are_swinging():
 		arms.stop_swinging()
 	
 	# Handle sprint 

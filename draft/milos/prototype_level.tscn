@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dcoa380of2b8d" path="res://draft/milos/level_layout.tscn" id="1_qdjcl"]
 [ext_resource type="PackedScene" uid="uid://dwn4yi6l43rcc" path="res://draft/milos/player/scenes/fps_controller.tscn" id="2_dcuui"]
 [ext_resource type="Shader" uid="uid://dw82e2wc6ei58" path="res://scripts/SkyShader.gdshader" id="3_2ily7"]
-[ext_resource type="PackedScene" uid="uid://bens6omy7cm8i" path="res://draft/vasilis/enemy-big.tscn" id="4_dcuui"]
+[ext_resource type="PackedScene" uid="uid://bens6omy7cm8i" path="res://draft/vasilis/scenes/enemy-big.tscn" id="4_dcuui"]
 [ext_resource type="PackedScene" uid="uid://c2snk2eob2q0v" path="res://assets/KayKit_City_Builder_Bits_1.0_FREE/Assets/fbx/box_B.fbx" id="5_2ily7"]
 [ext_resource type="PackedScene" uid="uid://b4yckbt7bc6wx" path="res://assets/KayKit_City_Builder_Bits_1.0_FREE/Assets/fbx/dumpster.fbx" id="6_sdn3o"]
 
