@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bens6omy7cm8i"]
+[gd_scene load_steps=9 format=3 uid="uid://kwm0v810v5n6"]
 
-[ext_resource type="Script" uid="uid://j4r7xfv8oddo" path="res://draft/vasilis/enemy.gd" id="1_14l0y"]
+[ext_resource type="Script" uid="uid://j4r7xfv8oddo" path="res://draft/vasilis/scripts/enemy.gd" id="1_538v7"]
+[ext_resource type="Script" uid="uid://bnl2b2v8tq6bs" path="res://draft/vasilis/scripts/state_machine.gd" id="2_b568a"]
+[ext_resource type="Script" uid="uid://bkym6fydds3t6" path="res://draft/vasilis/scripts/idle.gd" id="3_bbe7c"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ybhwf"]
-albedo_color = Color(0.012876375, 0.0036419136, 0.00044340154, 1)
+albedo_color = Color(0.5987757, 0.33140892, 0.110022016, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_538v7"]
 material = SubResource("StandardMaterial3D_ybhwf")
@@ -18,10 +20,9 @@ material = SubResource("StandardMaterial3D_538v7")
 size = Vector3(1, 0.1, 0.4)
 
 [node name="Enemy" type="CharacterBody3D"]
-script = ExtResource("1_14l0y")
+script = ExtResource("1_538v7")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0014750957, 0.0056322813, -0.0027003288)
 mesh = SubResource("CapsuleMesh_538v7")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
@@ -33,3 +34,12 @@ shape = SubResource("CapsuleShape3D_b568a")
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10970989, 0.68345916, -0.27492455)
 mesh = SubResource("BoxMesh_b568a")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_b568a")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("3_bbe7c")
+enemy = NodePath("../..")
+metadata/_custom_type_script = "uid://bkym6fydds3t6"

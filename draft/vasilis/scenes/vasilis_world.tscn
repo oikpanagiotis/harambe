@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://c3sr5a8nkf7k0"]
 
-[ext_resource type="PackedScene" uid="uid://c3r2f5geh61xt" path="res://draft/vasilis/floor_50.tscn" id="1_3qr7o"]
-[ext_resource type="PackedScene" uid="uid://kwm0v810v5n6" path="res://draft/vasilis/enemy.tscn" id="1_phq7d"]
-[ext_resource type="PackedScene" uid="uid://d0gyd0fr15ghj" path="res://draft/vasilis/obstacle.tscn" id="2_qv5ai"]
+[ext_resource type="PackedScene" uid="uid://c3r2f5geh61xt" path="res://draft/vasilis/scenes/floor_50.tscn" id="1_3qr7o"]
+[ext_resource type="PackedScene" uid="uid://kwm0v810v5n6" path="res://draft/vasilis/scenes/enemy.tscn" id="1_phq7d"]
+[ext_resource type="PackedScene" uid="uid://d0gyd0fr15ghj" path="res://draft/vasilis/scenes/obstacle.tscn" id="2_qv5ai"]
 [ext_resource type="PackedScene" uid="uid://dwn4yi6l43rcc" path="res://draft/milos/player/scenes/fps_controller.tscn" id="3_ey0i5"]
-[ext_resource type="PackedScene" uid="uid://bens6omy7cm8i" path="res://draft/vasilis/enemy-big.tscn" id="5_v26gy"]
+[ext_resource type="PackedScene" uid="uid://bens6omy7cm8i" path="res://draft/vasilis/scenes/enemy-big.tscn" id="5_v26gy"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ey0i5"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
