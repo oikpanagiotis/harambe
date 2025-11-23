@@ -21,13 +21,18 @@ GameEvents="*res://scripts/autoload/game_events.gd"
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 window/size/resizable=false
 
 [dotnet]
 
 project/assembly_name="harambe"
+
+[editor]
+
+export/size/viewport_height=720
+export/size/viewport_width=1280
 
 [global_group]
 

@@ -1,13 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3yr3rvdjuqef"]
+[gd_scene load_steps=7 format=3 uid="uid://c3yr3rvdjuqef"]
 
-[ext_resource type="PackedScene" uid="uid://dy5utmxupfl25" path="res://external_resources/arm/arm.glb" id="1_q2flg"]
-[ext_resource type="PackedScene" uid="uid://c8v4decfk2pl" path="res://external_resources/enemy/enemy.glb" id="2_sgh1b"]
+[ext_resource type="PackedScene" uid="uid://dbtcfavmmvhoc" path="res://draft/panos/grid_map.tscn" id="1_q2flg"]
+[ext_resource type="PackedScene" uid="uid://dwn4yi6l43rcc" path="res://draft/milos/player/scenes/fps_controller.tscn" id="2_sgh1b"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sgh1b"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_jps37"]
+sky_material = SubResource("ProceduralSkyMaterial_sgh1b")
+
+[sub_resource type="Environment" id="Environment_mn76m"]
+background_mode = 2
+sky = SubResource("Sky_jps37")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_sgh1b"]
 
 [node name="PanosWorld" type="Node3D"]
 
-[node name="arm" parent="." instance=ExtResource("1_q2flg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.38620543, 0, -0.19252682)
-visible = false
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_mn76m")
 
-[node name="enemy" parent="." instance=ExtResource("2_sgh1b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5235337, -5.9604645e-08, -1.117492)
+[node name="CharacterBody3D" parent="." instance=ExtResource("2_sgh1b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.9266267, 0)
+
+[node name="GridMap" parent="." instance=ExtResource("1_q2flg")]
+physics_material = SubResource("PhysicsMaterial_sgh1b")
