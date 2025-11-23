@@ -1,7 +1,7 @@
 [gd_resource type="MeshLibrary" load_steps=12 format=3 uid="uid://bkhx4h3ikm8tr"]
 
-[ext_resource type="Texture2D" uid="uid://bf1jab60tsyn3" path="res://assets/prototype/PNG/Dark/texture_01.png" id="1_akb1d"]
-[ext_resource type="Texture2D" uid="uid://6ixs8pky6pw7" path="res://assets/prototype/PNG/Orange/texture_01.png" id="2_77e72"]
+[ext_resource type="Texture2D" uid="uid://hc6tjm0cf155" path="res://assets/prototype/PNG/Dark/texture_01.png" id="1_akb1d"]
+[ext_resource type="Texture2D" uid="uid://b4lidehksrxm4" path="res://assets/prototype/PNG/Orange/texture_01.png" id="2_77e72"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f1q6q"]
 albedo_texture = ExtResource("1_akb1d")

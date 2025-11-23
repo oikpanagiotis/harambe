@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bens6omy7cm8i"]
+[gd_scene load_steps=8 format=3 uid="uid://bens6omy7cm8i"]
 
 [ext_resource type="Script" uid="uid://j4r7xfv8oddo" path="res://draft/vasilis/scripts/enemy.gd" id="1_14l0y"]
+[ext_resource type="Script" uid="uid://dxnn8su8b5kgn" path="res://draft/milos/health.gd" id="2_4w0tg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ybhwf"]
 albedo_color = Color(0.012876375, 0.0036419136, 0.00044340154, 1)
@@ -33,3 +34,6 @@ shape = SubResource("CapsuleShape3D_b568a")
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10970989, 0.68345916, -0.27492455)
 mesh = SubResource("BoxMesh_b568a")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("2_4w0tg")

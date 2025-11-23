@@ -1,11 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://ba4epeiu2xhgh"]
+[gd_scene load_steps=11 format=3 uid="uid://ba4epeiu2xhgh"]
 
 [ext_resource type="PackedScene" uid="uid://dcoa380of2b8d" path="res://draft/milos/level_layout.tscn" id="1_qdjcl"]
 [ext_resource type="PackedScene" uid="uid://dwn4yi6l43rcc" path="res://draft/milos/player/scenes/fps_controller.tscn" id="2_dcuui"]
 [ext_resource type="Shader" uid="uid://dw82e2wc6ei58" path="res://scripts/SkyShader.gdshader" id="3_2ily7"]
 [ext_resource type="PackedScene" uid="uid://bens6omy7cm8i" path="res://draft/vasilis/scenes/enemy-big.tscn" id="4_dcuui"]
-[ext_resource type="PackedScene" uid="uid://coqvct6jq32fi" path="res://assets/KayKit_City_Builder_Bits_1.0_FREE/Assets/fbx/box_B.fbx" id="5_2ily7"]
-[ext_resource type="PackedScene" uid="uid://cphk3084qjq8t" path="res://assets/KayKit_City_Builder_Bits_1.0_FREE/Assets/fbx/dumpster.fbx" id="6_sdn3o"]
+[ext_resource type="PackedScene" uid="uid://c2snk2eob2q0v" path="res://assets/KayKit_City_Builder_Bits_1.0_FREE/Assets/fbx/box_B.fbx" id="5_2ily7"]
+[ext_resource type="PackedScene" uid="uid://n0mj050whvr6" path="res://draft/milos/dumpster.tscn" id="6_sdn3o"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ogcbk"]
 shader = ExtResource("3_2ily7")
@@ -22,15 +22,12 @@ ambient_light_source = 3
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sdn3o"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_mn2ih"]
-size = Vector3(2.7312012, 1.597229, 1.8891602)
-
 [node name="PrototypeLevel" type="Node2D"]
 
 [node name="LevelLayout" parent="." instance=ExtResource("1_qdjcl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.13471758, 0, 1.6539301)
 
-[node name="CollisionShape3D" parent="." instance=ExtResource("2_dcuui")]
+[node name="Gorilla" parent="." instance=ExtResource("2_dcuui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.945543, 5.2515345, 13.555491)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -66,13 +63,5 @@ shape = SubResource("BoxShape3D_sdn3o")
 [node name="box_B" parent="Box2" instance=ExtResource("5_2ily7")]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -0.5549364, 0)
 
-[node name="Dumpster" type="RigidBody3D" parent="." groups=["object"]]
+[node name="Dumpster" parent="." instance=ExtResource("6_sdn3o")]
 transform = Transform3D(0.83484787, 0, 0.5504807, 0, 1, 0, -0.5504807, 0, 0.83484787, -0.26652884, 1.0920901, 10.62559)
-mass = 2.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Dumpster"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.822, 0)
-shape = SubResource("BoxShape3D_mn2ih")
-
-[node name="dumpster" parent="Dumpster" instance=ExtResource("6_sdn3o")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)

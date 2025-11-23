@@ -127,6 +127,7 @@ func _handle_hit(body: Node3D, hitbox: Area3D, vel: Vector3):
 		return
 
 	if body.is_in_group("enemies"):
+		body.get_node("Health").take_damage(10)
 		bodies_already_hit_in_swing.append(body)
 		_spawn_hit_cloud(hitbox.global_position)
 		cam.screen_shake(0.7)

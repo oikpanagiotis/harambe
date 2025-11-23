@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://n0mj050whvr6"]
+
+[ext_resource type="PackedScene" uid="uid://b4yckbt7bc6wx" path="res://assets/KayKit_City_Builder_Bits_1.0_FREE/Assets/fbx/dumpster.fbx" id="1_qtv7f"]
+[ext_resource type="Script" uid="uid://b2u1f385241vq" path="res://draft/milos/damaging_object.gd" id="2_eurgs"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mn2ih"]
+size = Vector3(2.7312012, 1.597229, 1.8891602)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qtv7f"]
+size = Vector3(2.986496, 1.8456421, 1.9883118)
+
+[node name="Dumpster" type="RigidBody3D" groups=["object"]]
+transform = Transform3D(0.83484787, 0, 0.5504807, 0, 1, 0, -0.5504807, 0, 0.83484787, 0, 0, 0)
+mass = 2.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.822, 0)
+shape = SubResource("BoxShape3D_mn2ih")
+
+[node name="dumpster" parent="." instance=ExtResource("1_qtv7f")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+
+[node name="DamageHandler" type="Node" parent="."]
+script = ExtResource("2_eurgs")
+
+[node name="DamageArea" type="Area3D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.011146543, 0.82677805, -0.024000004)
+shape = SubResource("BoxShape3D_qtv7f")
